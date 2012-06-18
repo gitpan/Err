@@ -10,7 +10,7 @@ use Scalar::Util qw(blessed);
 # load Exception::Class and declare the Err::Exception baseclass
 use Exception::Class ("Err::Exception");
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 our @EXPORT_OK;
 
 my %defaults;  # default arguments
@@ -85,7 +85,7 @@ sub declare_err($%) {
       $err_class => {
         isa => $parent,
         (defined $description ? (description => $description) : ()),
-        fields => [keys $defaults{ $err_class }],
+        fields => [keys %{ $defaults{ $err_class } }],
       }
     );
 
